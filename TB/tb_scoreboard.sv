@@ -64,6 +64,7 @@ endclass :  tb_scoreboard
                 else begin 
                     $display("[tb_scoreboard] rx pkt num %d ,the data is %h , failed at %t ns" , rcv_pkt_num , rx_filled_pkt_data,$time );   
                     $display("[tb_scoreboard]ERROR ****************** expect data is [0x%h]," , tx_filled_pkt_data_tmp);   
+                    `uvm_error("*E", "[tb_scoreboard] rx pkt is error");  
                 end 				
  				rcv_pkt_num ++ ;
     	    end 
@@ -78,7 +79,8 @@ endclass :  tb_scoreboard
                 end 
                 else begin 
                     $display("[tb_scoreboard] rx result num %d ,the data is %h , failed at %t ns" , rcv_result_num , rx_final_result_data,$time );   
-                    $display("[tb_scoreboard] ERROR ****************** expect data is [0x%h]," , tx_result_data_tmp);   
+                    $display("[tb_scoreboard] ERROR ****************** expect data is [0x%h]," , tx_result_data_tmp);
+                    `uvm_error("*E", "[tb_scoreboard] rx result is error");					
                 end 
 				$fdisplay(tx_result_wr_file,"%h" ,tx_result_data_tmp);
  				rcv_result_num ++ ;

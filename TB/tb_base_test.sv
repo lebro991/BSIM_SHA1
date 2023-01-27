@@ -24,6 +24,7 @@ endclass
 		v_sqr = tb_vsqr::type_id::create("v_sqr" , this);
 		 										
     endfunction 
+	
 	function void tb_base_test::report_phase(uvm_phase phase);
 	    uvm_report_server  server ;
 		int  err_num ;
@@ -32,13 +33,19 @@ endclass
 		err_num = server.get_severity_count(UVM_ERROR);
 		
 		if(err_num != 0)begin 
+		    $display("#############    #############          #############           ##########        #############    " );
+		    $display("##                ##           ##        ##           ##      ##          ##       ##           ## " );
+		    $display("##                ##           ##        ##           ##      ##          ##       ##           ## " );
+		    $display("#############     #############          #############        ##          ##       #############   " );
+		    $display("##                ##         ##          ##         ##        ##          ##       ##         ##   " );
+		    $display("##                ##          ##         ##          ##       ##          ##       ##          ##  " );
+		    $display("#############    ###          ###       ###          ###        ##########        ###          ### " );
 		    $display("TEST CASE FAILED");
 		end 
 		else begin 
 		    $display("TEST CASE PASSED");
 		end 
-    endfunction 	
-	
+    endfunction  	
 	function void tb_base_test:: connect_phase(uvm_phase phase );
         super.build_phase(phase);
         v_sqr.p_sqr0  = env0.i_agt.sqr ;
